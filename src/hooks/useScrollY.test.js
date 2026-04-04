@@ -1,10 +1,12 @@
-import { describe, it, expect, beforeEach } from 'vitest'
+import { describe, it, expect, beforeEach, vi } from 'vitest'
 import { renderHook, act } from '@testing-library/react'
 import useScrollY from './useScrollY'
 
 describe('useScrollY', () => {
   beforeEach(() => {
     Object.defineProperty(window, 'scrollY', { writable: true, value: 0 })
+    // Run rAF callbacks synchronously so scroll updates are testable
+    vi.stubGlobal('requestAnimationFrame', (cb) => { cb(); return 0 })
   })
 
   it('returns 0 initially', () => {

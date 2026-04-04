@@ -22,7 +22,7 @@ export default function About() {
               variants={fadeInUp}
               className="text-accent font-mono text-sm tracking-widest uppercase mb-3"
             >
-              About Me
+              Who I Am
             </motion.p>
             <motion.h2
               variants={fadeInUp}

@@ -87,30 +87,42 @@ export default function Contact() {
               variants={fadeInUp}
               className="space-y-4"
             >
-              <input
-                type="text"
-                name="name"
-                placeholder="Your name"
-                required
-                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
-              />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your email"
-                required
-                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
-              />
-              <textarea
-                name="message"
-                placeholder="Your message"
-                required
-                rows={5}
-                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm resize-none"
-              />
+              <div>
+                <label htmlFor="contact-name" className="sr-only">Your name</label>
+                <input
+                  id="contact-name"
+                  type="text"
+                  name="name"
+                  placeholder="Your name"
+                  required
+                  className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-email" className="sr-only">Your email</label>
+                <input
+                  id="contact-email"
+                  type="email"
+                  name="email"
+                  placeholder="Your email"
+                  required
+                  className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                />
+              </div>
+              <div>
+                <label htmlFor="contact-message" className="sr-only">Your message</label>
+                <textarea
+                  id="contact-message"
+                  name="message"
+                  placeholder="Your message"
+                  required
+                  rows={5}
+                  className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm resize-none"
+                />
+              </div>
               <button
                 type="submit"
-                disabled={status === 'sending'}
+                disabled={status === 'sending' || status === 'sent'}
                 className="flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent/90 disabled:opacity-60 transition-colors duration-200 text-sm"
               >
                 <FiSend className="w-4 h-4" />

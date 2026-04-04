@@ -32,22 +32,24 @@ export default function ProjectCard({ project, className = '' }) {
 
       {/* Links */}
       <div className="flex items-center gap-4 pt-2 border-t border-border">
-        <a
-          href={project.github}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-          className="flex items-center gap-1.5 text-sm text-text-muted hover:text-text-primary transition-colors"
-        >
-          <FiGithub className="w-4 h-4" />
-          GitHub
-        </a>
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={`${project.title} on GitHub`}
+            className="flex items-center gap-1.5 text-sm text-text-muted hover:text-text-primary transition-colors"
+          >
+            <FiGithub className="w-4 h-4" />
+            GitHub
+          </a>
+        )}
         {project.demo && (
           <a
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
-            aria-label="Live Demo"
+            aria-label={`${project.title} live demo`}
             className="flex items-center gap-1.5 text-sm text-text-muted hover:text-accent transition-colors"
           >
             <FiExternalLink className="w-4 h-4" />
