@@ -1,0 +1,166 @@
+import { useState, useRef } from 'react'
+import { motion } from 'framer-motion'
+import emailjs from '@emailjs/browser'
+import { FiGithub, FiLinkedin, FiMail, FiSend } from 'react-icons/fi'
+
+const fadeInUp = {
+  hidden: { opacity: 0, y: 24 },
+  visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+}
+
+const socialLinks = [
+  {
+    label: 'GitHub',
+    href: 'https://github.com/yourusername',
+    icon: FiGithub,
+  },
+  {
+    label: 'LinkedIn',
+    href: 'https://linkedin.com/in/yourusername',
+    icon: FiLinkedin,
+  },
+  {
+    label: 'Email',
+    href: 'mailto:your@email.com',
+    icon: FiMail,
+  },
+]
+
+export default function Contact() {
+  const formRef = useRef(null)
+  const [status, setStatus] = useState('idle') // 'idle' | 'sending' | 'sent' | 'error'
+
+  const handleSubmit = (e) => {
+    e.preventDefault()
+    setStatus('sending')
+
+    emailjs
+      .sendForm(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        formRef.current,
+        { publicKey: import.meta.env.VITE_EMAILJS_PUBLIC_KEY }
+      )
+      .then(() => {
+        setStatus('sent')
+        formRef.current.reset()
+      })
+      .catch(() => {
+        setStatus('error')
+      })
+  }
+
+  return (
+    <section id="contact" className="py-24 md:py-32">
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true, margin: '-80px' }}
+          variants={{ visible: { transition: { staggerChildren: 0.15 } } }}
+        >
+          <motion.p
+            variants={fadeInUp}
+            className="text-accent font-mono text-sm tracking-widest uppercase mb-3"
+          >
+            Contact
+          </motion.p>
+          <motion.h2
+            variants={fadeInUp}
+            className="text-4xl md:text-5xl font-bold text-text-primary mb-4"
+          >
+            Get In Touch
+          </motion.h2>
+          <motion.p
+            variants={fadeInUp}
+            className="text-text-muted max-w-lg mb-12"
+          >
+            I'm open to new opportunities, collaborations, or just a good
+            conversation. Drop me a message and I'll get back to you.
+          </motion.p>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-16">
+            {/* Form */}
+            <motion.form
+              ref={formRef}
+              onSubmit={handleSubmit}
+              variants={fadeInUp}
+              className="space-y-4"
+            >
+              <input
+                type="text"
+                name="name"
+                placeholder="Your name"
+                required
+                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+              />
+              <input
+                type="email"
+                name="email"
+                placeholder="Your email"
+                required
+                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+              />
+              <textarea
+                name="message"
+                placeholder="Your message"
+                required
+                rows={5}
+                className="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm resize-none"
+              />
+              <button
+                type="submit"
+                disabled={status === 'sending'}
+                className="flex items-center gap-2 px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent/90 disabled:opacity-60 transition-colors duration-200 text-sm"
+              >
+                <FiSend className="w-4 h-4" />
+                {status === 'sending' ? 'Sending...' : 'Send Message'}
+              </button>
+              {status === 'sent' && (
+                <p className="text-sm text-green-400">Message sent successfully!</p>
+              )}
+              {status === 'error' && (
+                <p className="text-sm text-red-400">
+                  Something went wrong. Please try again or email directly.
+                </p>
+              )}
+            </motion.form>
+
+            {/* Social links */}
+            <motion.div variants={fadeInUp} className="space-y-6">
+              <p className="text-text-muted text-sm">Or reach me directly:</p>
+              <div className="space-y-4">
+                {socialLinks.map(({ label, href, icon: Icon }) => (
+                  <a
+                    key={label}
+                    href={href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="flex items-center gap-3 text-text-muted hover:text-text-primary transition-colors group"
+                  >
+                    <span className="w-10 h-10 flex items-center justify-center rounded-lg border border-border bg-surface group-hover:border-accent group-hover:text-accent transition-colors">
+                      <Icon className="w-5 h-5" />
+                    </span>
+                    <span className="text-sm font-medium">{label}</span>
+                  </a>
+                ))}
+              </div>
+            </motion.div>
+          </div>
+
+          {/* Footer tagline */}
+          <motion.div
+            variants={fadeInUp}
+            className="mt-24 pt-8 border-t border-border text-center"
+          >
+            <p className="text-text-muted text-sm">
+              Designed & built by{' '}
+              <span className="gradient-text font-medium">Your Name</span>
+              {' '}· {new Date().getFullYear()}
+            </p>
+          </motion.div>
+        </motion.div>
+      </div>
+    </section>
+  )
+}
