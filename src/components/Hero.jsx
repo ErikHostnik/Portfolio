@@ -43,7 +43,7 @@ export default function Hero() {
             className="text-5xl md:text-7xl font-bold text-text-primary leading-tight mb-6"
           >
             Hi, I'm{' '}
-            <span className="gradient-text">Your Name</span>
+            <span className="gradient-text">Erik Hostnik</span>
           </motion.h1>
 
           <motion.p

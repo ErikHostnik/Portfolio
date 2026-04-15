@@ -6,12 +6,13 @@ vi.mock('framer-motion', () => ({
   motion: new Proxy({}, {
     get: (_, tag) => {
       const Component = ({ children, ...props }) => {
-        const { variants, initial, animate, whileInView, viewport, transition, whileHover, ...rest } = props
+        const { variants, initial, animate, whileInView, viewport, transition, whileHover, exit, custom, ...rest } = props
         return React.createElement(tag, rest, children)
       }
       return Component
     }
-  })
+  }),
+  AnimatePresence: ({ children }) => children ?? null,
 }))
 
 import Projects from './Projects'
@@ -20,7 +21,7 @@ import { projects } from '../data/projects'
 describe('Projects', () => {
   it('renders section heading', () => {
     render(<Projects />)
-    expect(screen.getByRole('heading', { name: /projects/i })).toBeInTheDocument()
+    expect(screen.getByRole('heading', { level: 2, name: /^projects$/i })).toBeInTheDocument()
   })
 
   it('renders all project titles', () => {
@@ -30,9 +31,10 @@ describe('Projects', () => {
     })
   })
 
-  it('renders GitHub links for each project', () => {
+  it('renders project cards as interactive buttons', () => {
     render(<Projects />)
-    const githubLinks = screen.getAllByRole('link', { name: /github/i })
-    expect(githubLinks.length).toBe(projects.length)
+    projects.forEach((p) => {
+      expect(screen.getByRole('button', { name: new RegExp(p.title, 'i') })).toBeInTheDocument()
+    })
   })
 })
