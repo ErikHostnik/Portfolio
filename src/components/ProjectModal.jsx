@@ -14,7 +14,6 @@ const modalVariants = {
 }
 
 export default function ProjectModal({ project, onClose }) {
-  // Close on Escape
   useEffect(() => {
     const handleKey = (e) => {
       if (e.key === 'Escape') onClose()
@@ -23,7 +22,6 @@ export default function ProjectModal({ project, onClose }) {
     return () => window.removeEventListener('keydown', handleKey)
   }, [onClose])
 
-  // Prevent body scroll
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
@@ -42,13 +40,13 @@ export default function ProjectModal({ project, onClose }) {
     >
       {/* Backdrop */}
       <motion.div
-        className="absolute inset-0 bg-black/75 backdrop-blur-sm"
+        className="absolute inset-0 bg-bg/85"
         onClick={onClose}
       />
 
       {/* Panel */}
       <motion.div
-        className="relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-[#111111] border border-[#27272a] rounded-2xl shadow-2xl"
+        className="relative z-10 w-full max-w-2xl max-h-[85vh] overflow-y-auto bg-surface pixel-border"
         variants={modalVariants}
         initial="hidden"
         animate="visible"
@@ -57,28 +55,27 @@ export default function ProjectModal({ project, onClose }) {
         aria-modal="true"
         aria-labelledby="modal-title"
       >
-        {/* Header gradient line */}
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#6366f1] to-transparent" />
+        <div className="h-1 w-full bg-accent" />
 
         <div className="p-6 md:p-8">
           {/* Close button */}
           <button
             onClick={onClose}
-            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center rounded-lg text-[#71717a] hover:text-[#f4f4f5] hover:bg-white/5 transition-colors"
+            className="absolute top-4 right-4 w-8 h-8 flex items-center justify-center text-text-muted hover:text-accent hover:bg-bg transition-colors"
             aria-label="Close modal"
           >
             <FiX className="w-5 h-5" />
           </button>
 
           {/* Category badge */}
-          <span className="inline-flex items-center gap-1.5 text-xs font-mono text-[#6366f1] bg-[#6366f1]/10 px-2.5 py-1 rounded-md border border-[#6366f1]/20 mb-4">
+          <span className="inline-flex items-center gap-1.5 text-xs font-sans text-accent bg-bg px-2.5 py-1 border border-border mb-4">
             {project.category}
           </span>
 
           {/* Title */}
           <h2
             id="modal-title"
-            className="text-2xl md:text-3xl font-bold text-[#f4f4f5] mb-3"
+            className="font-display text-xl md:text-2xl text-text-primary mb-3"
           >
             {project.title}
           </h2>
@@ -88,7 +85,7 @@ export default function ProjectModal({ project, onClose }) {
             {project.tags.map((tag) => (
               <span
                 key={tag}
-                className="text-xs font-mono text-[#a855f7] bg-[#a855f7]/10 px-2 py-1 rounded-md"
+                className="text-xs font-sans text-accent-secondary bg-bg px-2 py-1"
               >
                 {tag}
               </span>
@@ -96,19 +93,19 @@ export default function ProjectModal({ project, onClose }) {
           </div>
 
           {/* Long description */}
-          <p className="text-[#a1a1aa] leading-relaxed mb-6">
+          <p className="text-text-muted leading-relaxed mb-6">
             {project.longDescription || project.description}
           </p>
 
           {/* Links */}
           {(project.github || project.demo) && (
-            <div className="flex items-center gap-4 pb-6 border-b border-[#27272a]">
+            <div className="flex items-center gap-4 pb-6 border-b border-border/40">
               {project.github && (
                 <a
                   href={project.github}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-[#71717a] hover:text-[#f4f4f5] transition-colors"
+                  className="flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors"
                 >
                   <FiGithub className="w-4 h-4" />
                   View on GitHub
@@ -119,7 +116,7 @@ export default function ProjectModal({ project, onClose }) {
                   href={project.demo}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-2 text-sm text-[#71717a] hover:text-[#6366f1] transition-colors"
+                  className="flex items-center gap-2 text-sm text-text-muted hover:text-accent transition-colors"
                 >
                   <FiExternalLink className="w-4 h-4" />
                   Live Demo
@@ -131,21 +128,20 @@ export default function ProjectModal({ project, onClose }) {
           {/* Sub-projects */}
           {hasSubProjects && (
             <div className="mt-6">
-              <h3 className="text-xs font-mono text-[#71717a] uppercase tracking-widest mb-4">
+              <h3 className="text-xs font-sans text-text-muted uppercase tracking-widest mb-4">
                 {project.subProjects.length} sub-project{project.subProjects.length !== 1 ? 's' : ''}
               </h3>
               <div className="space-y-3">
                 {project.subProjects.map((sub) => (
                   <div
                     key={sub.id}
-                    className="group relative bg-[#0a0a0a] border border-[#27272a] rounded-xl p-4 hover:border-[#6366f1]/50 transition-colors duration-200"
+                    className="group relative bg-bg border border-border/40 p-4 hover:border-accent transition-colors duration-200"
                   >
-                    {/* Left accent bar */}
-                    <div className="absolute left-0 top-3 bottom-3 w-0.5 rounded-full bg-[#6366f1]/40 group-hover:bg-[#6366f1] transition-colors" />
+                    <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-accent/40 group-hover:bg-accent transition-colors" />
 
                     <div className="pl-3">
                       <div className="flex items-start justify-between gap-3 mb-2">
-                        <h4 className="text-sm font-semibold text-[#f4f4f5]">
+                        <h4 className="text-sm font-semibold text-text-primary">
                           {sub.title}
                         </h4>
                         {sub.github && (
@@ -153,21 +149,21 @@ export default function ProjectModal({ project, onClose }) {
                             href={sub.github}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="text-[#71717a] hover:text-[#f4f4f5] transition-colors flex-shrink-0"
+                            className="text-text-muted hover:text-accent transition-colors flex-shrink-0"
                             aria-label={`${sub.title} on GitHub`}
                           >
                             <FiGithub className="w-3.5 h-3.5" />
                           </a>
                         )}
                       </div>
-                      <p className="text-xs text-[#71717a] leading-relaxed mb-2.5">
+                      <p className="text-xs text-text-muted leading-relaxed mb-2.5">
                         {sub.description}
                       </p>
                       <div className="flex flex-wrap gap-1.5">
                         {sub.tags.map((tag) => (
                           <span
                             key={tag}
-                            className="text-[10px] font-mono text-[#6366f1] bg-[#6366f1]/10 px-1.5 py-0.5 rounded"
+                            className="text-[10px] font-sans text-accent bg-bg px-1.5 py-0.5"
                           >
                             {tag}
                           </span>
@@ -181,8 +177,7 @@ export default function ProjectModal({ project, onClose }) {
           )}
         </div>
 
-        {/* Footer gradient line */}
-        <div className="h-px w-full bg-gradient-to-r from-transparent via-[#6366f1]/40 to-transparent" />
+        <div className="h-1 w-full bg-accent/40" />
       </motion.div>
     </motion.div>
   )
