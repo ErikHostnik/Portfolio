@@ -67,7 +67,7 @@ export default function Hero() {
             >
               <a
                 href="#projects"
-                className="px-6 py-3 bg-accent text-bg font-semibold pixel-border pixel-border-active transition-colors duration-200 hover:bg-accent/90"
+                className="px-6 py-3 bg-accent text-bg font-semibold pixel-border pixel-border-active transition-colors duration-200 hover:bg-accent-secondary"
               >
                 View Projects
               </a>
