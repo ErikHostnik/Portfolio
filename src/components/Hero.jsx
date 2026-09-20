@@ -1,4 +1,7 @@
 import { motion } from 'framer-motion'
+import ParallaxScene from './parallax/ParallaxScene'
+import DialogPanel from './ui/DialogPanel'
+import { scenes } from '../assets/backgrounds'
 
 const containerVariants = {
   hidden: {},
@@ -18,69 +21,66 @@ export default function Hero() {
       id="hero"
       className="relative min-h-screen flex items-center overflow-hidden"
     >
-      {/* Gradient orbs */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="orb orb-1" />
-        <div className="orb orb-2" />
-        <div className="orb orb-3" />
-      </div>
+      <ParallaxScene layers={scenes.hero} />
 
-      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16">
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          animate="visible"
-        >
-          <motion.p
-            variants={itemVariants}
-            className="text-accent font-mono text-sm mb-4 tracking-widest uppercase"
-          >
-            Available for hire
-          </motion.p>
-
-          <motion.h1
-            variants={itemVariants}
-            className="text-5xl md:text-7xl font-bold text-text-primary leading-tight mb-6"
-          >
-            Hi, I'm{' '}
-            <span className="gradient-text">Erik Hostnik</span>
-          </motion.h1>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-xl md:text-2xl text-text-muted max-w-2xl mb-4 leading-relaxed"
-          >
-            Full-stack developer building clean, performant, and thoughtful
-            digital products.
-          </motion.p>
-
-          <motion.p
-            variants={itemVariants}
-            className="text-base text-text-muted max-w-xl mb-10"
-          >
-            I care about the details — from system architecture down to pixel-perfect
-            interfaces. Let's build something great.
-          </motion.p>
-
+      <div className="relative z-10 max-w-6xl mx-auto px-6 pt-24 pb-16 w-full">
+        <DialogPanel className="max-w-3xl">
           <motion.div
-            variants={itemVariants}
-            className="flex flex-wrap gap-4"
+            variants={containerVariants}
+            initial="hidden"
+            animate="visible"
           >
-            <a
-              href="#projects"
-              className="px-6 py-3 bg-accent text-white font-medium rounded-lg hover:bg-accent/90 transition-colors duration-200"
+            <motion.p
+              variants={itemVariants}
+              className="text-accent font-sans text-sm mb-4 tracking-widest uppercase"
             >
-              View Projects
-            </a>
-            <a
-              href="/resume.pdf"
-              download
-              className="px-6 py-3 border border-border text-text-primary font-medium rounded-lg hover:border-accent hover:text-accent transition-colors duration-200"
+              Available for hire
+            </motion.p>
+
+            <motion.h1
+              variants={itemVariants}
+              className="font-display text-3xl md:text-5xl text-text-primary leading-tight mb-6"
             >
-              Download CV
-            </a>
+              Hi, I'm{' '}
+              <span className="text-accent">Erik Hostnik</span>
+            </motion.h1>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-xl md:text-2xl text-text-muted max-w-2xl mb-4 leading-relaxed"
+            >
+              Full-stack developer building clean, performant, and thoughtful
+              digital products.
+            </motion.p>
+
+            <motion.p
+              variants={itemVariants}
+              className="text-base text-text-muted max-w-xl mb-10"
+            >
+              I care about the details — from system architecture down to pixel-perfect
+              interfaces. Let's build something great.
+            </motion.p>
+
+            <motion.div
+              variants={itemVariants}
+              className="flex flex-wrap gap-4"
+            >
+              <a
+                href="#projects"
+                className="px-6 py-3 bg-accent text-bg font-semibold pixel-border pixel-border-active transition-colors duration-200 hover:bg-accent/90"
+              >
+                View Projects
+              </a>
+              <a
+                href="/resume.pdf"
+                download
+                className="px-6 py-3 bg-surface text-text-primary font-semibold pixel-border pixel-border-active hover:text-accent transition-colors duration-200"
+              >
+                Download CV
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </DialogPanel>
       </div>
     </section>
   )
