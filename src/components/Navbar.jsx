@@ -1,3 +1,4 @@
+// src/components/Navbar.jsx
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { FiMenu, FiX } from 'react-icons/fi'
@@ -22,7 +23,7 @@ export default function Navbar() {
     <motion.header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled || mobileOpen
-          ? 'bg-bg/90 backdrop-blur-md border-b border-border'
+          ? 'bg-surface/95 border-b-[3px] border-border'
           : 'bg-transparent'
       }`}
       initial={{ y: -80, opacity: 0 }}
@@ -31,7 +32,7 @@ export default function Navbar() {
     >
       <div className="max-w-6xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <a href="#hero" className="text-lg font-bold gradient-text tracking-tight">
+        <a href="#hero" className="text-lg font-display text-accent tracking-tight">
           EH
         </a>
 
@@ -41,7 +42,7 @@ export default function Navbar() {
             <a
               key={link.href}
               href={link.href}
-              className="text-sm text-text-muted hover:text-text-primary transition-colors duration-200"
+              className="text-sm text-text-muted hover:text-accent transition-colors duration-200"
             >
               {link.label}
             </a>
@@ -50,7 +51,7 @@ export default function Navbar() {
 
         {/* Mobile hamburger */}
         <button
-          className="md:hidden text-text-muted hover:text-text-primary transition-colors p-1"
+          className="md:hidden text-text-muted hover:text-accent transition-colors p-1"
           onClick={() => setMobileOpen((prev) => !prev)}
           aria-label={mobileOpen ? 'Close menu' : 'Open menu'}
         >
@@ -66,7 +67,7 @@ export default function Navbar() {
             animate={{ opacity: 1, height: 'auto' }}
             exit={{ opacity: 0, height: 0 }}
             transition={{ duration: 0.2 }}
-            className="md:hidden bg-bg/95 backdrop-blur-md border-b border-border overflow-hidden"
+            className="md:hidden bg-surface/95 border-b-[3px] border-border overflow-hidden"
           >
             <ul className="flex flex-col px-6 py-4 gap-4">
               {navLinks.map((link) => (
@@ -74,7 +75,7 @@ export default function Navbar() {
                   <a
                     href={link.href}
                     onClick={closeMobile}
-                    className="block text-text-muted hover:text-text-primary transition-colors py-1"
+                    className="block text-text-muted hover:text-accent transition-colors py-1"
                   >
                     {link.label}
                   </a>
