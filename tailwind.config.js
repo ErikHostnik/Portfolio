@@ -4,24 +4,25 @@ export default {
   theme: {
     extend: {
       colors: {
-        bg: '#0a0a0a',
+        bg: '#0d0f14',
         surface: {
-          DEFAULT: '#111111',
-          raised: '#1a1a1a',
+          DEFAULT: '#12141c',
+          raised: '#1a1d28',
         },
         accent: {
-          DEFAULT: '#6366f1',
-          secondary: '#a855f7',
+          DEFAULT: '#f2b632',
+          secondary: '#5f9a4a',
         },
-        border: '#27272a',
+        border: '#e8dfc7',
         text: {
-          primary: '#f4f4f5',
-          muted: '#71717a',
+          primary: '#f4f1e6',
+          muted: '#b9b2a0',
         },
       },
       fontFamily: {
-        sans: ['Inter', 'system-ui', 'sans-serif'],
-        mono: ['JetBrains Mono', 'monospace'],
+        display: ['"Press Start 2P"', 'cursive'],
+        sans: ['"Pixelify Sans"', 'sans-serif'],
+        mono: ['"Pixelify Sans"', 'sans-serif'],
       },
     },
   },
