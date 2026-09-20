@@ -1,4 +1,4 @@
-import { useEffect, useRef } from 'react'
+import { useEffect, useMemo, useRef } from 'react'
 import useInView from '../../hooks/useInView'
 import usePrefersReducedMotion from '../../hooks/usePrefersReducedMotion'
 
@@ -17,7 +17,10 @@ export default function ParallaxScene({ layers, speeds, className = '' }) {
   const frameRef = useRef(null)
   const lastTimeRef = useRef(null)
 
-  const resolvedSpeeds = speeds ?? defaultSpeeds(layers.length)
+  const resolvedSpeeds = useMemo(
+    () => speeds ?? defaultSpeeds(layers.length),
+    [speeds, layers]
+  )
 
   useEffect(() => {
     if (!inView || prefersReducedMotion) {
