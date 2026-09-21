@@ -9,6 +9,7 @@ const breakpoints = [
 
 for (const bp of breakpoints) {
   test(`hero renders readable text over the parallax scene at ${bp.name}px`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.setViewportSize({ width: bp.width, height: bp.height })
     await page.goto('/')
     await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
@@ -16,6 +17,7 @@ for (const bp of breakpoints) {
   })
 
   test(`about renders readable text over the parallax scene at ${bp.name}px`, async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' })
     await page.setViewportSize({ width: bp.width, height: bp.height })
     await page.goto('/#about')
     await page.locator('#about').evaluate((el) => el.scrollIntoView({ behavior: 'instant', block: 'start' }))
@@ -46,4 +48,15 @@ test('parallax scene stays static when the user prefers reduced motion', async (
   await page.waitForTimeout(500)
   const after = await heroScene.screenshot()
   expect(Buffer.compare(before, after)).toBe(0)
+})
+
+test('parallax scene animates when the user has no motion preference', async ({ page }) => {
+  await page.goto('/')
+  const heroScene = page.locator('#hero [aria-hidden="true"]').first()
+  await expect(heroScene).toBeVisible()
+  await page.waitForTimeout(2000)
+  const before = await heroScene.screenshot()
+  await page.waitForTimeout(1000)
+  const after = await heroScene.screenshot()
+  expect(Buffer.compare(before, after)).not.toBe(0)
 })
