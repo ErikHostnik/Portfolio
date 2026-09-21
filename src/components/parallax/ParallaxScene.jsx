@@ -64,8 +64,8 @@ export default function ParallaxScene({ layers, speeds, className = '' }) {
           ref={(node) => { trackRefs.current[i] = node }}
           className="absolute inset-y-0 left-0 h-full w-[200%] flex"
         >
-          <img src={src} alt="" className="pixelated h-full w-1/2 object-cover" draggable={false} />
-          <img src={src} alt="" className="pixelated h-full w-1/2 object-cover" draggable={false} />
+          <img src={src} alt="" className="pixelated h-full w-1/2 object-fill" draggable={false} />
+          <img src={src} alt="" className="pixelated h-full w-1/2 object-fill" draggable={false} />
         </div>
       ))}
     </div>
