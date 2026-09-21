@@ -18,8 +18,14 @@ for (const bp of breakpoints) {
   test(`about renders readable text over the parallax scene at ${bp.name}px`, async ({ page }) => {
     await page.setViewportSize({ width: bp.width, height: bp.height })
     await page.goto('/#about')
-    await page.locator('#about').scrollIntoViewIfNeeded()
-    await page.waitForTimeout(800)
+    await page.locator('#about').evaluate((el) => el.scrollIntoView({ behavior: 'instant', block: 'start' }))
+    // Instant scroll removes scroll-animation timing variance, but About's own
+    // Framer Motion whileInView entrance (4 children, staggerChildren 0.2 +
+    // 0.7s duration each => ~1.3s worst case) still needs to finish before the
+    // screenshot is taken, or the comparison window overlaps the reveal
+    // animation and flakes under CPU load (mirrors the wait used for Hero's
+    // entrance stagger in the reduced-motion test below).
+    await page.waitForTimeout(1500)
     await expect(page.getByRole('heading', { name: /about me/i })).toBeVisible()
     await expect(page).toHaveScreenshot(`about-${bp.name}.png`)
   })
