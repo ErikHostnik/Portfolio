@@ -102,7 +102,7 @@ export default function Contact() {
                     name="name"
                     placeholder="Your name"
                     required
-                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:border-accent transition-colors text-sm"
                   />
                 </div>
                 <div>
@@ -113,7 +113,7 @@ export default function Contact() {
                     name="email"
                     placeholder="Your email"
                     required
-                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm"
+                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:border-accent transition-colors text-sm"
                   />
                 </div>
                 <div>
@@ -124,7 +124,7 @@ export default function Contact() {
                     placeholder="Your message"
                     required
                     rows={5}
-                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:outline-none focus:border-accent transition-colors text-sm resize-none"
+                    className="w-full bg-bg border-2 border-border px-4 py-3 text-text-primary placeholder-text-muted focus:border-accent transition-colors text-sm resize-none"
                   />
                 </div>
                 <button
