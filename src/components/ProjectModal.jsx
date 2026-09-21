@@ -137,7 +137,7 @@ export default function ProjectModal({ project, onClose }) {
                     key={sub.id}
                     className="group relative bg-bg border border-border/40 p-4 hover:border-accent transition-colors duration-200"
                   >
-                    <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-accent/40 group-hover:bg-accent transition-colors" />
+                    <div className="absolute left-0 top-3 bottom-3 w-0.5 bg-accent/40 group-hover:bg-accent-secondary transition-colors" />
 
                     <div className="pl-3">
                       <div className="flex items-start justify-between gap-3 mb-2">

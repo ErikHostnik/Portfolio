@@ -73,7 +73,7 @@ function TreeCard({ project, onOpen, side, hasSubProjects }) {
   return (
     <motion.button
       onClick={() => onOpen(project)}
-      className="group relative w-full max-w-sm text-left bg-surface pixel-border pixel-border-active p-5 cursor-pointer focus:outline-none hover:border-accent transition-colors duration-300"
+      className="group relative w-full max-w-sm text-left bg-surface pixel-border pixel-border-active p-5 cursor-pointer hover:border-accent transition-colors duration-300"
       whileHover={{ y: -3 }}
       transition={{ duration: 0.2 }}
       aria-label={`Open ${project.title} details`}
@@ -125,7 +125,7 @@ function TreeCard({ project, onOpen, side, hasSubProjects }) {
             {project.subProjects.slice(0, 4).map((_, i) => (
               <span
                 key={i}
-                className="w-1 h-3 bg-accent/50 group-hover:bg-accent transition-colors"
+                className="w-1 h-3 bg-accent/50 group-hover:bg-accent-secondary transition-colors"
                 style={{ transitionDelay: `${i * 40}ms` }}
               />
             ))}
