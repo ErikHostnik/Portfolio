@@ -1,12 +1,22 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm create:*)",
-      "Bash(npm install:*)",
-      "Bash(timeout 10 npm run dev -- --port 5173)",
-      "Bash(npm run:*)",
-      "Bash(npx tailwindcss:*)",
-      "Bash(npm test:*)"
+      "Bash(npm install *)",
+      "Read(//home/erik/.claude/plugins/cache/claude-plugins-official/superpowers/6.3.0/skills/subagent-driven-development/scripts/**)",
+      "Bash(cp /home/erik/Desktop/Projects/Portfolio/docs/superpowers/specs/2026-09-20-pixel-retro-redesign-design.md docs/superpowers/specs/)",
+      "Bash(cp /home/erik/Desktop/Projects/Portfolio/docs/superpowers/plans/2026-09-20-pixel-retro-redesign.md docs/superpowers/plans/)",
+      "Bash(npx vitest *)",
+      "Bash(npm -v)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\\\\n\" http://localhost:4173/)",
+      "Bash(node *)",
+      "Bash(git hash-object *)",
+      "Bash(git check-ignore *)",
+      "Bash(npx eslint *)",
+      "Bash(git reset *)",
+      "Bash(git apply *)",
+      "Bash(python3 -c ' *)",
+      "Bash(grep -E \"^\\(implementer|test-runner|debugger\\)\\\\.md$\")",
+      "Bash(cd *)"
     ]
   }
 }
