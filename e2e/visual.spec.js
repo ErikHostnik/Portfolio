@@ -28,6 +28,12 @@ test('parallax scene stays static when the user prefers reduced motion', async (
   await page.goto('/')
   const heroScene = page.locator('#hero [aria-hidden="true"]').first()
   await expect(heroScene).toBeVisible()
+  // Wait out Hero's one-time Framer Motion entrance stagger (worst case ~1.5s:
+  // delayChildren 0.2s + 4x staggerChildren 0.15s + itemVariants duration 0.7s)
+  // before comparing — otherwise the comparison window overlaps the mount
+  // animation, which is unrelated to (and not covered by) the parallax scene's
+  // own reduced-motion gating.
+  await page.waitForTimeout(2000)
   const before = await heroScene.screenshot()
   await page.waitForTimeout(500)
   const after = await heroScene.screenshot()
