@@ -18,6 +18,8 @@ for (const bp of breakpoints) {
   test(`about renders readable text over the parallax scene at ${bp.name}px`, async ({ page }) => {
     await page.setViewportSize({ width: bp.width, height: bp.height })
     await page.goto('/#about')
+    await page.locator('#about').scrollIntoViewIfNeeded()
+    await page.waitForTimeout(800)
     await expect(page.getByRole('heading', { name: /about me/i })).toBeVisible()
     await expect(page).toHaveScreenshot(`about-${bp.name}.png`)
   })
