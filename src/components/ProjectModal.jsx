@@ -1,4 +1,5 @@
 import { useEffect } from 'react'
+import { createPortal } from 'react-dom'
 import { motion } from 'framer-motion'
 import { FiX, FiGithub, FiExternalLink } from 'react-icons/fi'
 
@@ -29,7 +30,7 @@ export default function ProjectModal({ project, onClose }) {
 
   const hasSubProjects = project.subProjects && project.subProjects.length > 0
 
-  return (
+  return createPortal(
     <motion.div
       className="fixed inset-0 z-50 flex items-center justify-center p-4 md:p-8"
       variants={overlayVariants}
@@ -179,6 +180,7 @@ export default function ProjectModal({ project, onClose }) {
 
         <div className="h-1 w-full bg-accent/40" />
       </motion.div>
-    </motion.div>
+    </motion.div>,
+    document.body
   )
 }
