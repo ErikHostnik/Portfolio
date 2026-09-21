@@ -55,7 +55,7 @@ export default function Contact() {
   }
 
   return (
-    <section id="contact" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="contact" className="relative isolate py-24 md:py-32 overflow-hidden">
       <ParallaxScene layers={scenes.contact} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">

@@ -9,8 +9,10 @@ function defaultSpeeds(count) {
   return Array.from({ length: count }, (_, i) => BASE_SPEED + i * SPEED_STEP)
 }
 
+const VIEWPORT_OPTIONS = { threshold: 0 }
+
 export default function ParallaxScene({ layers, speeds, className = '' }) {
-  const [containerRef, inView] = useInView({ threshold: 0 })
+  const [containerRef, inView] = useInView(VIEWPORT_OPTIONS)
   const prefersReducedMotion = usePrefersReducedMotion()
   const trackRefs = useRef([])
   const offsets = useRef(layers.map(() => 0))

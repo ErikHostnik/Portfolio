@@ -25,7 +25,7 @@ function TimelineItem({ role, company, period, description }) {
 
 export default function Resume() {
   return (
-    <section id="resume" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="resume" className="relative isolate py-24 md:py-32 overflow-hidden">
       <ParallaxScene layers={scenes.resume} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">

@@ -11,7 +11,7 @@ const fadeInUp = {
 
 export default function About() {
   return (
-    <section id="about" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="about" className="relative isolate py-24 md:py-32 overflow-hidden">
       <ParallaxScene layers={scenes.about} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">

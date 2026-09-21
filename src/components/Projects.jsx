@@ -143,7 +143,7 @@ export default function Projects() {
   const [selectedProject, setSelectedProject] = useState(null)
 
   return (
-    <section id="projects" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="projects" className="relative isolate py-24 md:py-32 overflow-hidden">
       <ParallaxScene layers={scenes.projects} />
 
       <div className="relative z-10 max-w-4xl mx-auto px-6">

@@ -17,7 +17,7 @@ const pillVariants = {
 
 export default function Skills() {
   return (
-    <section id="skills" className="relative py-24 md:py-32 overflow-hidden">
+    <section id="skills" className="relative isolate py-24 md:py-32 overflow-hidden">
       <ParallaxScene layers={scenes.skills} />
 
       <div className="relative z-10 max-w-6xl mx-auto px-6">
